@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getAlbumsResults 1`] = `
+Object {
+  "results": Array [
+    Object {
+      "amgArtistId": 19398,
+      "artistId": 201246132,
+      "artistName": "The Monks",
+      "artistViewUrl": "https://music.apple.com/us/artist/the-monks/201246132?uo=4",
+      "artworkUrl100": "https://is3-ssl.mzstatic.com/image/thumb/Music6/v4/9a/39/5e/9a395e3e-ef06-23c8-3e26-6aca7bf7562d/source/100x100bb.jpg",
+      "artworkUrl60": "https://is3-ssl.mzstatic.com/image/thumb/Music6/v4/9a/39/5e/9a395e3e-ef06-23c8-3e26-6aca7bf7562d/source/60x60bb.jpg",
+      "collectionCensoredName": "Black Monk Time",
+      "collectionExplicitness": "notExplicit",
+      "collectionId": 668699145,
+      "collectionName": "Black Monk Time",
+      "collectionPrice": 9.99,
+      "collectionType": "Album",
+      "collectionViewUrl": "https://music.apple.com/us/album/black-monk-time/668699145?uo=4",
+      "copyright": "℗ 2009 Light In The Attic Records",
+      "country": "USA",
+      "currency": "USD",
+      "primaryGenreName": "Rock",
+      "releaseDate": "2009-04-14T07:00:00Z",
+      "trackCount": 18,
+      "wrapperType": "collection",
+    },
+  ],
+  "type": "SEARCH_FOR_ALBUMS",
+}
+`;
+
+exports[`getSongsFromAlbum 1`] = `
+Object {
+  "songs": Array [
+    Object {
+      "type": "song - will be saved",
+    },
+  ],
+  "type": "GET_SONGS_FROM_ALBUM",
+}
+`;
+
+exports[`reportAlbumsFetchError 1`] = `
+Object {
+  "err": "error message",
+  "type": "ALBUMS_ERR",
+}
+`;
+
+exports[`reportSongsFetchError 1`] = `
+Object {
+  "err": "error message",
+  "type": "SONG_ERR",
+}
+`;
+
+exports[`resetSongs 1`] = `
+Object {
+  "type": "RESET_SONGS",
+}
+`;

@@ -1,0 +1,5 @@
+{
+    "resultCount":1,
+    "results": [
+   {"wrapperType":"collection", "collectionType":"Album", "artistId":201246132, "collectionId":668699145, "amgArtistId":19398, "artistName":"The Monks", "collectionName":"Black Monk Time", "collectionCensoredName":"Black Monk Time", "artistViewUrl":"https://music.apple.com/us/artist/the-monks/201246132?uo=4", "collectionViewUrl":"https://music.apple.com/us/album/black-monk-time/668699145?uo=4", "artworkUrl60":"https://is3-ssl.mzstatic.com/image/thumb/Music6/v4/9a/39/5e/9a395e3e-ef06-23c8-3e26-6aca7bf7562d/source/60x60bb.jpg", "artworkUrl100":"https://is3-ssl.mzstatic.com/image/thumb/Music6/v4/9a/39/5e/9a395e3e-ef06-23c8-3e26-6aca7bf7562d/source/100x100bb.jpg", "collectionPrice":9.99, "collectionExplicitness":"notExplicit", "trackCount":18, "copyright":"℗ 2009 Light In The Attic Records", "country":"USA", "currency":"USD", "releaseDate":"2009-04-14T07:00:00Z", "primaryGenreName":"Rock"}]
+}

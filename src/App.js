@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment } from 'react';
+import'./App.css';
+import Grid from './components/Grid/Grid';
+import MusicNoteIcon from '@material-ui/icons/MusicNote';
+import SearchPanel from './components/SearchPanel/SearchPanel';
+import SearchResult from './components/SearchResult/SearchResult';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <Fragment>
+      <header className="AppMainHeader">
+        <MusicNoteIcon className="Icon"/>
+        <h1>MyTunes app</h1>
       </header>
-    </div>
+      <main>
+        <Grid left={<SearchPanel/>} right={<SearchResult/>} sl={5} sr={7} />
+      </main>
+    </Fragment>
   );
 }
 
