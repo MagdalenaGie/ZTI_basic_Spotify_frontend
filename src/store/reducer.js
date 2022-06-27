@@ -3,8 +3,13 @@ import * as actionTypes from './actionTypes';
 const initialState = {
     results: [],
     songs: [],
+    playlists: [],
     resErr: "",
-    songErr:""
+    songErr:"",
+    playErr: "",
+    isLogged: false,
+    loginErr: false,
+    userData: {}
 }
 
 const updateObject = (oldObject, updatedProperties) => {
@@ -39,6 +44,23 @@ const reducer = (state = initialState, action) => {
         case actionTypes.RESET_SONGS:
             return updateObject(state, {
                 songs: []
+            })
+        case actionTypes.LOGIN_USER_SUCCESS:
+            return updateObject(state, {
+                isLogged: true,
+                loginErr:false,
+                userData : action.user
+            })
+        case actionTypes.LOGIN_USER_FAILED:
+            return updateObject(state, {
+                isLogged: false,
+                loginErr: true
+            })
+        case actionTypes.LOGOUT_USER:
+            return updateObject(state, {
+                isLogged: false,
+                loginErr: false,
+                userData: {}
             })
 
         default:

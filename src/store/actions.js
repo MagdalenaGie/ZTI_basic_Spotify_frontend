@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from '../axios';
+import axiosDB from '../axiosDB';
 
 const filterAlbumsBy = (filterType, filterValue, albums) => {
     const regex = new RegExp(filterValue, "i");
@@ -21,7 +22,7 @@ export const fetchAlbums = (filterType, searchValue) => {
             }
 
             if(albumsToDisplay.length === 0){
-                let message = `No albums connected to the term ${searchValue} were found. Please try again with different parameter.`
+                let message = `Nie znaleziono albumów powiązanych z "${searchValue}". Spróbuj ponownie z innym parametrem.`
                 dispatch(reportAlbumsFetchError(message));
             }else{
                 dispatch(getAlbumsResults(albumsToDisplay));
@@ -29,7 +30,7 @@ export const fetchAlbums = (filterType, searchValue) => {
         })
         .catch(err => {
             console.log(err.message);
-            let message = `A probblem has occured while connecting to the database, please try again later`;
+            let message = `Wystąpił problem z połączeniem do API iTunes - spróbuj ponownie za moment`;
             dispatch(reportAlbumsFetchError(message));
         })
     }
@@ -58,7 +59,7 @@ export const fetchSongsFromAlbum = (albumId) => {
         })
         .catch(err => {
             console.log(err.message);
-            let message = `A probblem has occured while connecting to the database, please try again later`;
+            let message = `Wystąpił problem z połączeniem do API iTunes - spróbuj ponownie za moment`;
             dispatch(reportSongsFetchError(message))
         })
     }
@@ -82,5 +83,69 @@ export const getSongsFromAlbum = (songs) => {
 export const resetSongs = () => {
     return{
         type: actionTypes.RESET_SONGS
+    }
+}
+
+export const fetchUserPlaylists = (userId) => {
+    return dispatch => {
+        let route = '/playlist/owner/' + userId;
+        axiosDB.get(route)
+        .then(res => {
+            console.log(res)
+            dispatch(getPlaylists(res.data));
+        })
+        .catch(err => {
+            console.log(err.message);
+            // let message = `A probblem has occured while connecting to the database, please try again later`;
+            // dispatch(reportPlaylistsFetchError(message))
+        })
+    }
+}
+
+export const reportPlaylistsFetchError = (err) => {
+    return{
+        type: actionTypes.PLAYLISTS_ERR,
+        err: err
+    }
+}
+
+export const getPlaylists = (playlists) => {
+    console.log(playlists)
+    return{
+        type: actionTypes.GET_USER_PLAYLISTS,
+        playlists: playlists
+    }
+}
+
+export const fetchUserLogin = (login, password) => {
+    return dispatch => {
+        let route = '/user/' + login + '/' + password;
+        axiosDB.get(route)
+        .then(res => {
+            if(res.data !== ""){
+                dispatch(getUserLogin(res.data));
+            }else{
+                dispatch({
+                    type: actionTypes.LOGIN_USER_FAILED
+                })
+            }
+            
+        })
+        .catch(err => {
+            console.log(err.message);
+        })
+    }
+}
+
+export const logout_user = () => {
+    return{
+        type: actionTypes.LOGOUT_USER
+    }
+}
+
+export const getUserLogin = (user) => {
+    return{
+        type: actionTypes.LOGIN_USER_SUCCESS,
+        user: user
     }
 }

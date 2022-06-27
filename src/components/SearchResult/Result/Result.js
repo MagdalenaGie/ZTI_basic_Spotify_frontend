@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector} from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
@@ -7,6 +7,21 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Spinner from './../../UI/Loader/Loader';
+import { Button, withStyles } from '@material-ui/core';
+import AddToPlaylistModal from './AddToPlaylistModal';
+
+const purple = "#551281";
+
+const   PurpleButton = withStyles((theme) => ({
+  root: {
+    color: theme.palette.getContrastText(purple),
+    backgroundColor: purple,
+    '&:hover': {
+      backgroundColor: purple,
+    },
+    marginTop: "10px"
+  },
+}))(Button);
 
 const useStyles = makeStyles((theme) => ({
   heading: {
@@ -31,6 +46,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Result = (props) => {
+
+  const [modalShow, setModalShow] = useState(false);
+
   const classes = useStyles();
 
   const songs = useSelector(state => state.songs);
@@ -43,7 +61,7 @@ const Result = (props) => {
 
   let res = {...props.result};
 
-  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const monthNames = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
   let relDate = new Date(res.releaseDate);
   let dateToDisplay = relDate.getDate() + ' ' + monthNames[relDate.getMonth()] + ' ' + relDate.getFullYear() +'r.';
 
@@ -66,16 +84,20 @@ const Result = (props) => {
         <AccordionDetails >
           <div className={classes.detailsContainer}>
               <div className={classes.details}>
-                  <p>Number of tracks: {res.trackCount}</p>
-                  <p>Country of origin: {res.country}</p>
-                  <p>Price: {res.collectionPrice} {res.currency}</p>
-                  <p>Release date: {dateToDisplay}</p>
+                  <p>Ilość utworów: {res.trackCount}</p>
+                  <p>Kraj pochodzenia: {res.country}</p>
+                  <p>Cena: {res.collectionPrice} {res.currency}</p>
+                  <p>Data publikacji: {dateToDisplay}</p>
+                  <PurpleButton variant="contained" color="primary" onClick={() => setModalShow(true)}>
+                    Dodaj do playlisty
+                  </PurpleButton>
               </div>
               <div className={classes.details}>
                 {songsToDisplay}
               </div>
           </div>
         </AccordionDetails>
+        <AddToPlaylistModal show={modalShow} onHide={() => setModalShow(false)} album={res} playlists={props.playlists} setAddSuccess={props.setAddSuccess} setAddFail={props.setAddFail} isLoadingPlaylists={props.isLoadingPlaylists}/>
       </Accordion>
   );
 }

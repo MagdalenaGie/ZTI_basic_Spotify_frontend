@@ -64,7 +64,7 @@ const SearchPanel = (props) => {
             artist: true,
             album: false,
             any: false,
-            label: "artist"
+            label: "wykonawcy"
         });
     };
 
@@ -73,7 +73,7 @@ const SearchPanel = (props) => {
             artist: false,
             album: true,
             any: false,
-            label: "album"
+            label: "nazwie albumu"
         });
     };
 
@@ -82,7 +82,7 @@ const SearchPanel = (props) => {
             artist: false,
             album: false,
             any: true,
-            label: "album or artist"
+            label: "jakimkolwiek parametrze"
         });
     };
 
@@ -94,28 +94,28 @@ const SearchPanel = (props) => {
     return(
         <Fragment>
             <div className={classes.title}>
-                <Typography variant="h5">Look for albums</Typography>
-                <Typography >Match by:</Typography>
+                <Typography variant="h5">Szukaj albumów muzycznych:</Typography>
+                <Typography >Dopasuj po:</Typography>
             </div>
             <div className={classes.center}>
                 <FormControlLabel
                     control={<PurpleCheckbox checked={checks.artist} onChange={handleArtistCheck} name="artist check" />}
-                    label="Artist name"
+                    label="Autor"
                 />
                 <FormControlLabel
                     control={<PurpleCheckbox checked={checks.album} onChange={handleAlbumCheck} name="album check" />}
-                    label="Album title"
+                    label="Tytuł"
                 />
                 <FormControlLabel
                     control={<PurpleCheckbox checked={checks.any} onChange={handleAnyCheck} name="any check" />}
-                    label="Just any match"
+                    label="Jakiekolwiek dopasowanie"
                 />
             </div>
             
             <TextField
                 className={classes.inputLine}
                 id="outlined-name"
-                label={`Match by ${checks.label}s`}
+                label={`Dopasuj po ${checks.label}`}
                 value={searchValue}
                 onChange={handleSearchValueChange}
                 variant="outlined"
