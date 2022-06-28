@@ -8,6 +8,7 @@ const initialState = {
     songErr:"",
     playErr: "",
     isLogged: false,
+    loginProcessing: false,
     loginErr: false,
     userData: {}
 }
@@ -45,14 +46,20 @@ const reducer = (state = initialState, action) => {
             return updateObject(state, {
                 songs: []
             })
+        case actionTypes.LOGIN_USER_START:
+            return updateObject(state, {
+                loginProcessing: true
+            })
         case actionTypes.LOGIN_USER_SUCCESS:
             return updateObject(state, {
+                loginProcessing: false,
                 isLogged: true,
                 loginErr:false,
                 userData : action.user
             })
         case actionTypes.LOGIN_USER_FAILED:
             return updateObject(state, {
+                loginProcessing: false,
                 isLogged: false,
                 loginErr: true
             })

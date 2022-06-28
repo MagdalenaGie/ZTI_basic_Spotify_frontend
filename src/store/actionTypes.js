@@ -4,6 +4,7 @@ export const GET_SONGS_FROM_ALBUM = "GET_SONGS_FROM_ALBUM";
 export const SONG_ERR = "SONG_ERR";
 export const GET_USER_PLAYLISTS = "GET_USER_PLAYLISTS";
 export const PLAYLISTS_ERR = "PLAYLISTS_ERR";
+export const LOGIN_USER_START = "LOGIN_USER_START";
 export const LOGIN_USER = "LOGIN_USER";
 export const LOGOUT_USER = "LOGOUT_USER"
 export const LOGIN_USER_FAILED = "LOGIN_USER_FAILED";

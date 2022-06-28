@@ -26,6 +26,8 @@ const LoginPage = (props) => {
     const [regSuccess, setRegSuccess] = useState(false);
     const [regFail, setRegFail] = useState(false);
 
+    const [processing, setProcessing] = useState(false);
+
     const handleSubmitLoginForm = (event) => {
         event.preventDefault()
         let login = event.target[0].value;
@@ -36,6 +38,8 @@ const LoginPage = (props) => {
 
     const handleSubmitRegisterForm = (event) => {
         event.preventDefault()
+        setProcessing(true);
+
         var name = event.target[0].value;
         var gender = event.target[1].value
         var login = event.target[2].value;
@@ -51,16 +55,20 @@ const LoginPage = (props) => {
             console.log(userData)
             axiosDB.post('/user', userData)
                     .then(res => {
+                        setProcessing(false)
                         if(res.status === 200){
                             setRegSuccess(true)
                         }
                     }).catch(err => {
+                        setProcessing(false)
                         setRegFail(true);
                     })
             .catch(err => {
+                setProcessing(false)
                 setRegFail(true);
             })
         }else{
+            setProcessing(false)
             setRegFail(true);
         }
     }
@@ -114,9 +122,6 @@ const LoginPage = (props) => {
                             <PurpleButton variant="contained" color="primary" type='submit'>
                                 Zaloguj
                             </PurpleButton>
-                            {/* <Button variant="dark" type="submit">
-                                Zaloguj
-                            </Button> */}
                         </Form>
                     </Card.Body>
                 </Card>
